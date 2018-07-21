@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<sec:http pattern="/VAADIN/**" security="none" />
+
+	<sec:http entry-point-ref="loginUrlAuthenticationEntryPoint">
+		<sec:csrf disabled="true" />
+		<sec:intercept-url pattern="/login/**" access="isAnonymous()" />
+		<sec:intercept-url pattern="/frontend/**" access="permitAll" />
+		<sec:intercept-url pattern="/frontend/*.*" access="permitAll" />
+		<sec:intercept-url pattern="/logout" access="permitAll" /> 
+		<sec:intercept-url pattern="/" access="permitAll" />
+		<sec:intercept-url pattern="/secure/**" access="isAuthenticated()" />
+		<sec:logout logout-success-url="/login/loggedout" logout-url="/logout" />
+	</sec:http>
+
+	<sec:authentication-manager id="authenticationManager">
+ 		<sec:authentication-provider>
+			<sec:user-service>
+				<sec:user name="user" password="{noop}password" authorities="ROLE_USER" />
+			</sec:user-service>
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+
+</beans>
