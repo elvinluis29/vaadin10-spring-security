@@ -16,6 +16,7 @@ public class TutorialView extends VerticalLayout {
 	private static final long serialVersionUID = -4519843099295044241L;
 
 	public TutorialView(@Autowired MyService myService) {
+		setWidth("100%");
 		Label text = new Label("Tutorials view: " + myService.getText());
 		add(text);
 	}

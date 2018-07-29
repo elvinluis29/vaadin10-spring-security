@@ -12,6 +12,7 @@ public class IconsView extends VerticalLayout {
 	private static final long serialVersionUID = -1776878619434720376L;
 
 	public IconsView() {
+		setWidth("100%");
 		Label text = new Label("Icons view");
 		add(text);
 	}

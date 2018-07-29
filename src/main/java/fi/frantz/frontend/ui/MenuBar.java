@@ -28,7 +28,9 @@ public class MenuBar extends HorizontalLayout implements RouterLayout {
 	Logger logger = (Logger) LoggerFactory.getLogger(MenuBar.class);
 	
     public MenuBar() {
+    	setSizeFull();
     	menu = new VerticalLayout();
+    	menu.setSizeUndefined();
     	menu.getElement().getStyle().set("background-color", "#CFCFCF");
     	menu.setSpacing(false);
     	add(menu);
